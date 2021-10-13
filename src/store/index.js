@@ -7,8 +7,8 @@ export default createStore({
         infosArticles: []
     },
     mutations: {
-        updateInfosArticles(state, value) {
-            state.infosArticles.push(value)
+        updateInfosArticles(state, article) {
+            state.infosArticles.push(article)
         }
     },
     actions: {
@@ -16,7 +16,7 @@ export default createStore({
             axios.get(`https://newsapi.org/v2/everything?q=tesla&from=2021-09-13&sortBy=publishedAt&apiKey=45199ce3ce71493c9d8e7b304898433a&pageSize=${this.nbArticles}`)
                 .then(result => {
                         for (let i = 0; i <= context.state.nbArticles; i++) {
-                            let content = {
+                            let article = {
                                 "title": result.data.articles[i].title,
                                 "publishedAt": new Date(result.data.articles[i].publishedAt).toLocaleDateString(),
                                 "author": result.data.articles[i].author,
@@ -24,7 +24,7 @@ export default createStore({
                                 "urlToImage": result.data.articles[i].urlToImage,
                                 "content": result.data.articles[i].content,
                             }
-                            context.commit('updateInfosArticles', content);
+                            context.commit('updateInfosArticles', article);
                         }
                     }
                 )
