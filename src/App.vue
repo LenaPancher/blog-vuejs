@@ -11,44 +11,13 @@
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-#app {
+* {
   font-family: Montserrat;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  transition: all 1s;
+  overflow-x: hidden;
 }
-
-body {
-  margin: 0;
-}
-.tesla_main_menu {
+.home {
   position: relative;
-  width: 100%;
-  height: 90px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
+  top: 70px;
 }
-.tesla_main_menu a {
-  font-size: 16px;
-  font-weight: bold;
-  color: #2a2a2a;
-  position: relative;
-  margin: 0 20px;
-  text-decoration: none;
-
-}
-
-.tesla_main_menu svg {
-  width: 10%;
-}
-
-.tesla_list_menu {
-  padding: 0 20px;
-}
-
 </style>
