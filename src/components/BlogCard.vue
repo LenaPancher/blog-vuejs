@@ -12,6 +12,7 @@
           </div>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -19,13 +20,13 @@ export default {
     name: "BlogCard",
     computed: {
         getDataApi() {
-          this.$store.dispatch("getData")
-          return this.$store.state.infosArticles
-        }
+        let test = this.$store.state.infosArticles;
+        console.log(this.$store.state.infosArticles);
+        return test;
+      },
     }
 }
 </script>
-
 
 <style>
 .tesla_grid_card {
@@ -93,10 +94,6 @@ export default {
     text-overflow: ellipsis;
 }
 
-
-
-
-
 .tesla_card_text span {
     background-color: #2A2A2A;
     color: white;
@@ -128,8 +125,6 @@ export default {
     width: 40%;
     border-radius: 5px;
 }
-
-
 
 @media only screen and (max-width: 1035px) {
   .tesla_grid_card {

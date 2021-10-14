@@ -14,6 +14,9 @@ export default {
     NavBar,
     FooterBar,
   },
+  created(){
+    this.$store.dispatch("getData");
+  }
 };
 </script>
 

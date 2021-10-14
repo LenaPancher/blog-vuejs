@@ -1,35 +1,35 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
-import { Article } from '../classes/Article.js'
 
 export default createStore({
     state: {
-        nbArticles: 10,
         infosArticles: []
     },
     mutations: {
         updateInfosArticles(state, articles) {
-            state.infosArticles.push(articles)
+            state.infosArticles.push(articles);
         }
     },
     actions: {
         getData(context) {
-            axios.get(`https://newsapi.org/v2/everything?q=tesla&sortBy=publishedAt&apiKey=45199ce3ce71493c9d8e7b304898433a&pageSize=${this.nbArticles}&language=fr`)
+            axios.get(`https://newsapi.org/v2/everything?q=tesla&sortBy=publishedAt&apiKey=45199ce3ce71493c9d8e7b304898433a&pageSize=100&language=fr`)
                 .then(result => {
-                    for (let i = 0; i <= context.state.nbArticles; i++) {
+                    result.data.articles.forEach(element => {
                         let articles = {
-                            "title": result.data.articles[i].title,
-                            "publishedAt": new Date(result.data.articles[i].publishedAt).toLocaleDateString(),
-                            "author": result.data.articles[i].author,
-                            "description": result.data.articles[i].description,
-                            "urlToImage": result.data.articles[i].urlToImage,
-                            "content": result.data.articles[i].content,
+                            "title": element.title,
+                            "publishedAt": new Date(element.publishedAt).toLocaleDateString(),
+                            "author": element.author,
+                            "description": element.description,
+                            "urlToImage": element.urlToImage,
+                            "content": element.content,
                         }
-                        context.commit('updateInfosArticles', articles);
-                    }
+                        context.commit('updateInfosArticles', articles);            
+                    });
                 }
                 )
         }
+    },
+    getters: {
     },
     modules: {}
 })

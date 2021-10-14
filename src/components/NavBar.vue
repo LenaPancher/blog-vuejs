@@ -75,6 +75,7 @@ nav svg {
 
 .tesla_onScroll_menu {
   background-color: #2A2A2A;
+  z-index: 10;
 }
 
 .tesla_onScroll_menu a {
@@ -113,8 +114,6 @@ nav svg {
     background-color: #e3e3e3;
     cursor: pointer;
 }
-
-
 
    .tesla_list_menu_mobile p {
     font-size: 12px;
