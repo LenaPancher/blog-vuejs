@@ -22,7 +22,7 @@ export default {
 
 
 <style>
-* {
+body {
   font-family: Montserrat;
   transition: all 1s;
 }

@@ -161,11 +161,11 @@ export default {
 }
 
 .tesla_card_text h1 {
-  font-size: 16px;
-  text-transform: uppercase;
-  font-weight: bold;
-  height: 55px;
-  overflow: hidden;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    height: 55px;
+    text-overflow: ellipsis;
 }
 
 .tesla_card_text span {
