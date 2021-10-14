@@ -27,7 +27,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .tesla_grid_card {
   position: relative;
   top: 70px;
@@ -63,7 +63,7 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  object-fit: initial;
+  object-fit: cover;
 }
 .tesla_card_text {
   padding: 20px 20px 20px 40px;
@@ -90,7 +90,7 @@ export default {
   text-transform: uppercase;
   font-weight: bold;
   height: 55px;
-  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .tesla_card_text span {
