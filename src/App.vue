@@ -25,6 +25,9 @@ export default {
 * {
   font-family: Montserrat;
   transition: all 1s;
+}
+
+body {
   overflow-x: hidden;
 }
 .home {
