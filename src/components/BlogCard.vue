@@ -8,24 +8,23 @@
             <h1> {{ info.title }}</h1>
             <span>Publié le {{ info.publishedAt }}</span>
             <p>{{ info.description }}</p>
-            <router-link to="/article" :index="index">Voir l'article</router-link>
+            <router-link :to="{name : 'Article',  params: { id: index + 1 }}">Voir l'article</router-link>
           </div>
         </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-    name: "BlogCard",
-    computed: {
-        getDataApi() {
-        let test = this.$store.state.infosArticles;
-        console.log(this.$store.state.infosArticles);
-        return test;
-      },
-    }
-}
+  name: "BlogCard",
+  computed: {
+    getDataApi() {
+      let test = this.$store.state.infosArticles;
+      console.log(this.$store.state.infosArticles);
+      return test;
+    },
+  },
+};
 </script>
 
 <style>
@@ -53,77 +52,77 @@ export default {
   align-items: flex-start;
 }
 .tesla_card_image {
-    position: relative;
-    width: 100%;
-    left: 0;
-    top: 0;
-    height: 30%;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 30%;
+  overflow: hidden;
 }
 .tesla_card_image img {
   position: relative;
   width: 100%;
-  height:100%;
+  height: 100%;
   object-fit: initial;
 }
 .tesla_card_text {
-    padding: 20px 20px 20px 40px;
-    position: relative;
-    bottom: 0;
-    height: 65%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  padding: 20px 20px 20px 40px;
+  position: relative;
+  bottom: 0;
+  height: 65%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .tesla_card_text:before {
-    content: "";
-    position: absolute;
-    left: 15px;
-    top: 10%;
-    width: 2px;
-    height: 75%;
-    background-color: #2A2A2A;
-    padding: 20px 0;
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 10%;
+  width: 2px;
+  height: 75%;
+  background-color: #2a2a2a;
+  padding: 20px 0;
 }
 .tesla_card_text h1 {
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bold;
-    height: 55px;
-    text-overflow: ellipsis;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  height: 55px;
+  text-overflow: ellipsis;
 }
 
 .tesla_card_text span {
-    background-color: #2A2A2A;
-    color: white;
-    text-transform: uppercase;
-    padding: 5px;
-    font-size: 10px;
-    width: 30%;
-    border-radius: 5px;
-    top: 30%;
-    position: absolute;
+  background-color: #2a2a2a;
+  color: white;
+  text-transform: uppercase;
+  padding: 5px;
+  font-size: 10px;
+  width: 30%;
+  border-radius: 5px;
+  top: 30%;
+  position: absolute;
 }
 
 .tesla_card_text p {
-    font-size: 14px;
-    position: absolute;
-    top: 40%;
-    padding: 0 20px 0 0;
+  font-size: 14px;
+  position: absolute;
+  top: 40%;
+  padding: 0 20px 0 0;
 }
 
 .tesla_card_text a {
-    color: white;
-    background: #2A2A2A;
-    padding: 5px;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 12px;
-    text-align: center;
-    font-weight: bold;
-    width: 40%;
-    border-radius: 5px;
+  color: white;
+  background: #2a2a2a;
+  padding: 5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  text-align: center;
+  font-weight: bold;
+  width: 40%;
+  border-radius: 5px;
 }
 
 @media only screen and (max-width: 1035px) {
@@ -146,5 +145,4 @@ export default {
     grid-row-gap: 100px;
   }
 }
-
 </style>

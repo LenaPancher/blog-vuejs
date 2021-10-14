@@ -13,15 +13,15 @@
                 <label for="autheur">NOM DE L'AUTHEUR</label>
                 <input name="autheur" type="text" v-model="newAuthor">
                 <label for="shortdesc">PETITE DESCRIPTION</label>
-                <textarea name="shortdesc" v-model="newShortDesc">
+                <textarea name="shortdesc" v-model="newShortDesc"></textarea>
             </div>
             <div class="tesla_clear">
                 <label for="url">URL IMAGE</label>
                 <input name="url" type="text" v-model="urlImage">
                 <label for="title">GRANDE DESCRIPTION</label>
-                <input type="textarea" v-model="content">
+                <textarea v-model="content"></textarea>
             </div>
-            <textarea type="submit">Ajouter</textarea>
+            <button type="submit">Ajouter</button>
         </form>
     </section>
     
