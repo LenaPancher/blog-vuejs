@@ -6,8 +6,6 @@
             <div class="tesla_clear">
                 <label for="title">TITRE DE L'ARTICLE</label>
                 <input name="title" type="text" v-model="newTitle">
-                <label for="date">DATE DE L'ARTICLE</label>
-                <input name="date" type="text" v-model="newDate">
             </div>
             <div class="tesla_clear">
                 <label for="autheur">NOM DE L'AUTHEUR</label>
@@ -33,24 +31,32 @@ export default {
     data() {
         return {
             newTitle: "",
-            newDate: "",
             newAuthor: "",
             newShortDesc: "",
             urlImage: "",
             content: "",
         }
     },
+    mounted() {
+        
+    },
     methods: {
         addCard() {
             // $store.commit : appeler une mutation
-            this.$store.commit("updateInfosArticles", {
-                newTitle: this.newTitle,
-                newDate: this.newDate,
-                newAuthor: this.newAuthor,
-                newShortDesc: this.newShortDesc,
-                urlImage: this.urlImage,
+            this.$store.commit("addAdminArticle", {
+                title: this.newTitle,
+                publishedAt: new Date().toLocaleDateString("fr-FR"),
+                author: this.newAuthor,
+                description: this.newShortDesc,
+                urlToImage: this.urlImage,
                 content: this.content            
             })
+
+            const tableauAdmin = {title: this.newTitle,publishedAt: new Date().toLocaleDateString("fr-FR"),author: this.newAuthor,description: this.newShortDesc,urlToImage: this.urlImage,content: this.content};
+            let cardTableau = tableauAdmin;
+            cardTableau.push(JSON.parse(localStorage.getItem('CartAdmin')));
+            localStorage.setItem('CartAdmin', JSON.stringify(cardTableau));
+
         }
     }
 }
