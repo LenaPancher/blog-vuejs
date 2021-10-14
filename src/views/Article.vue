@@ -44,9 +44,9 @@ export default {
     console.log(data);
     this.content = data.content;
     this.urlToImage = data.urlToImage;
-    this.publishedAt = (data.publishedAt === null) ? this.empty=true : data.publishedAt;
+    this.publishedAt = (data.publishedAt === null) ? this.empty = true : data.publishedAt;
     this.title = data.title;
-    this.author = (data.author === null) ? this.empty=true : data.author;
+    this.author = (data.author === null) ? this.empty = true : data.author;
   },
 };
 </script>
@@ -77,6 +77,7 @@ export default {
 
 .article-content {
   margin-top: 4%;
+  line-height: 23px;
 }
 
 .empty {
