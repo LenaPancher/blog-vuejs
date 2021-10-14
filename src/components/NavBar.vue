@@ -64,7 +64,6 @@ nav a {
 
 }
 
-
 .tesla_list_menu_mobile {
   display: none;
 }
