@@ -13,7 +13,7 @@ export default createStore({
     },
     actions: {
         getData(context) {
-            axios.get(`https://newsapi.org/v2/everything?q=tesla&from=2021-09-13&sortBy=publishedAt&apiKey=45199ce3ce71493c9d8e7b304898433a&pageSize=${this.nbArticles}`)
+            axios.get(`https://newsapi.org/v2/everything?q=tesla&from=2021-09-13&sortBy=publishedAt&apiKey=45199ce3ce71493c9d8e7b304898433a&pageSize=${this.nbArticles}&language=en`)
                 .then(result => {
                         for (let i = 0; i <= context.state.nbArticles; i++) {
                             let article = {
