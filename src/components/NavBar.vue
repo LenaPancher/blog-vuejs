@@ -51,6 +51,7 @@ nav {
   padding: 20px;
   display: flex;
   align-items: center;
+  z-index: 10;
   justify-content: space-between;
 }
 nav a {

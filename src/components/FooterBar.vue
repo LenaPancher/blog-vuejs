@@ -19,7 +19,7 @@ export default {
 <style>
 .tesla_footer {
     position: relative;
-    bottom: 0;
+    bottom: -70px;
     left: 0;
     width: 100%;
     height: 50px;
