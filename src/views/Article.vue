@@ -21,13 +21,13 @@ export default {
   },
   mounted() {
     let data =
-      this.$store.state.infosArticles[parseInt(this.$route.params.id) - 1];
+        this.$store.state.infosArticles[parseInt(this.$route.params.id) - 1];
     console.log(data);
     this.content = data.content;
     this.urlToImage = data.urlToImage;
     this.publishedAt = data.publishedAt;
     this.title = data.title;
     console.log(this.urlToImage);
-  },
-};
+  }
+}
 </script>
