@@ -19,7 +19,7 @@
                 <label for="url">URL IMAGE</label>
                 <input name="url" type="text" v-model="urlImage">
                 <label for="title">GRANDE DESCRIPTION</label>
-                <textarea v-model="content"></textarea>
+                <textarea name="shortdesc" v-model="content"></textarea>
             </div>
             <button type="submit">Ajouter</button>
         </form>
@@ -32,15 +32,24 @@ export default {
     name: "addCard",
     data() {
         return {
-            newArticle: "",
+            newTitle: "",
+            newDate: "",
+            newAuthor: "",
+            newShortDesc: "",
+            urlImage: "",
+            content: "",
         }
     },
     methods: {
         addCard() {
             // $store.commit : appeler une mutation
-            this.$store.commit("addArticle", {
-                name: this.newArticle,
-                done: false
+            this.$store.commit("updateInfosArticles", {
+                newTitle: this.newTitle,
+                newDate: this.newDate,
+                newAuthor: this.newAuthor,
+                newShortDesc: this.newShortDesc,
+                urlImage: this.urlImage,
+                content: this.content            
             })
         }
     }
@@ -106,7 +115,6 @@ export default {
     .tesla_admin textarea {
     	height: 200px;
     	resize: none;
-    	padding: 25px 20px;
     }
     .tesla_admin input {
     	margin-bottom: 20px;
@@ -117,7 +125,7 @@ export default {
         width: 100%;
         text-align: left;
         font-weight: 500;
-        padding: 0 0 10px 0;
+        padding: 10px 0 10px 0;
         color: #666;
     }
     .tesla_admin label i {
@@ -130,6 +138,7 @@ export default {
     }
     .tesla_admin button {
     	padding: 20px 35px;
+        margin: 10px 0;
     	outline: none;
     	border: none;
     	cursor: pointer;
