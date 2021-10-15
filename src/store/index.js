@@ -16,6 +16,7 @@ export default createStore({
                 .then(result => {
                     result.data.articles.forEach(element => {
                         let articles = {
+                            "id": Math.floor((Math.random() * 1000000000) + 1),
                             "title": element.title,
                             "publishedAt": new Date(element.publishedAt).toLocaleDateString(),
                             "author": element.author,
