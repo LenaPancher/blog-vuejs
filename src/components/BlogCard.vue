@@ -2,7 +2,7 @@
   <div>
     <div class="testla_button_load">
       <button @click="toggleGrid('api')">ARTICLE API</button>
-      <button @click="toggleGrid('admin')">ARTICLE ADMIN</button>
+      <button @click="toggleGrid('admin')" v-if="!empty">ARTICLE ADMIN</button>
     </div>
 
         <div v-if="showGrid === 'api'" class="tesla_grid_card">
@@ -44,6 +44,7 @@ export default {
     return {
       showGrid: "api",
       lsData: [],
+      empty: false
     }
   },
   computed: {
@@ -60,7 +61,8 @@ export default {
     },
     getLocalStorageData() {
       let ls = JSON.parse(localStorage.getItem('session'))
-      this.lsData = ls;
+      console.log(ls)
+      this.lsData = ls === null ? (this.empty = true) : ls;
       console.log(ls)
     }
   },

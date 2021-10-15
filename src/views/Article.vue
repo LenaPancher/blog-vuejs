@@ -69,8 +69,7 @@ export default {
 
     this.content = data.content;
     this.urlToImage = data.urlToImage;
-    this.publishedAt =
-      data.publishedAt === null ? (this.empty = true) : data.publishedAt;
+    this.publishedAt = data.publishedAt === null ? (this.empty = true) : data.publishedAt;
     this.title = data.title;
     this.author = data.author === null ? (this.empty = true) : data.author;
   },
