@@ -1,41 +1,38 @@
 <template>
-    <div>
-      <div class="testla_button_load">
-        <button @click="toggleGrid('api')">API CART</button>
-        <button @click="toggleGrid('admin')">ADMIN CART</button>
-      </div>
+  <div>
+    <div class="testla_button_load">
+      <button @click="toggleGrid('api')">ARTICLE API</button>
+      <button @click="toggleGrid('admin')">ARTICLE ADMIN</button>
+    </div>
 
-        <div v-if="showGrid === 'api'" class="tesla_grid_card">
-            <div class="tesla_card" v-for="(info, index) in getDataApi" :key="info">
-              <div class="tesla_card_image">
-                <img :src='info.urlToImage' alt="url-image-article" height="200" width="400">
-              </div>
-              <div class="tesla_card_text">
-                <h1> {{ info.title }}</h1>
-                <span>Publié le {{ info.publishedAt }}</span>
-                <p>{{ info.description }}</p>
-                <router-link :to="{name : 'Article',  params: { id: index + 1 }}">Voir l'article</router-link>
-              </div>
-            </div>
+    <div v-if="showGrid === 'api'" class="tesla_grid_card">
+      <div class="tesla_card" v-for="(info, index) in getDataApi" :key="info">
+        <div class="tesla_card_image">
+          <img :src='info.urlToImage' alt="url-image-article" height="200" width="400">
         </div>
-
-
-        <div v-if="showGrid === 'admin'" class="tesla_grid_card">
-            <div class="tesla_card" v-for="(storage, index) in lsData" :key="storage">
-              <div class="tesla_card_image">
-                <img :src='storage.urlToImage' alt="url-image-article" height="200" width="400">
-              </div>
-              <div class="tesla_card_text">
-                <h1> {{ storage.title }}</h1>
-                <span>Publié le {{ storage.publishedAt }}</span>
-                <p>{{ storage.description }}</p>
-                <router-link :to="{name : 'Article',  params: { id: index + 1 }}">Voir l'article</router-link>
-              </div>
-            </div>
+        <div class="tesla_card_text">
+          <h1> {{ info.title }}</h1>
+          <span>Publié le {{ info.publishedAt }}</span>
+          <p>{{ info.description }}</p>
+          <router-link :to="{name : 'Article',  params: { id: index + 1 }}">Voir l'article</router-link>
         </div>
       </div>
+    </div>
 
-
+    <div v-if="showGrid === 'admin'" class="tesla_grid_card">
+      <div class="tesla_card" v-for="(storage, index) in lsData" :key="storage">
+        <div class="tesla_card_image">
+          <img :src='storage.urlToImage' alt="url-image-article" height="200" width="400">
+        </div>
+        <div class="tesla_card_text">
+          <h1> {{ storage.title }}</h1>
+          <span>Publié le {{ storage.publishedAt }}</span>
+          <p>{{ storage.description }}</p>
+          <router-link :to="{name : 'Article',  params: { id: index + 1 }}">Voir l'article</router-link>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -59,7 +56,7 @@ export default {
       this.showGrid = result;
       console.log(this.showGrid);
     },
-    getLocalStorageData(){
+    getLocalStorageData() {
       let ls = JSON.parse(localStorage.getItem('session'))
       this.lsData = ls;
       console.log(ls)
@@ -75,18 +72,34 @@ export default {
 
 .testla_button_load {
   position: relative;
-  top: 80px;
-  left: 10px;
+  top: 100px;
+  left: 40px;
+  z-index: 3;
 }
+
+.testla_button_load button {
+  color: white;
+  background: #2a2a2a;
+  padding: 5px;
+  font-size: 12px;
+  width: 15%;
+  border-radius: 5px;
+  border: none;
+  margin-right: 3%;
+  cursor: pointer;
+}
+
 .tesla_grid_card {
   position: relative;
   top: 70px;
   padding: 40px;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
   grid-auto-columns: minmax(100px, auto);
 }
+
 .tesla_card {
   position: relative;
   height: 550px;
@@ -101,6 +114,7 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
 }
+
 .tesla_card_image {
   position: relative;
   width: 100%;
@@ -109,12 +123,14 @@ export default {
   height: 30%;
   overflow: hidden;
 }
+
 .tesla_card_image img {
   position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .tesla_card_text {
   padding: 20px 20px 20px 40px;
   position: relative;
@@ -122,10 +138,12 @@ export default {
   height: 65%;
   overflow: hidden;
   display: flex;
-  width: 100%;
+  width: 80%;
   flex-direction: column;
   justify-content: space-between;
+  z-index: 3;
 }
+
 .tesla_card_text:before {
   content: "";
   position: absolute;
@@ -136,6 +154,7 @@ export default {
   background-color: #2a2a2a;
   padding: 20px 0;
 }
+
 .tesla_card_text h1 {
   font-size: 16px;
   text-transform: uppercase;
@@ -174,6 +193,7 @@ export default {
   font-weight: bold;
   width: 40%;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1035px) {
@@ -181,10 +201,15 @@ export default {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 1em;
-    grid-row-gap: 100px;
+    grid-row-gap: 10px;
   }
+
   .tesla_card_image img {
     object-fit: cover;
+  }
+
+  .testla_button_load button {
+    margin-bottom: 3%;
   }
 }
 
