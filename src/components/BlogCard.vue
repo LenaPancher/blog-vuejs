@@ -1,33 +1,83 @@
 <template>
-    <div class="tesla_grid_card">
-        <div class="tesla_card" v-for="(info, index) in getDataApi" :key="index">
-          <div class="tesla_card_image">
-            <img :src='info.urlToImage' alt="url-image-article" height="200" width="400">
-          </div>
-          <div class="tesla_card_text">
-            <h1> {{ info.title }}</h1>
-            <span>Publié le {{ info.publishedAt }}</span>
-            <p>{{ info.description }}</p>
-            <router-link :to="{name : 'Article',  params: { id: index + 1 }}">Voir l'article</router-link>
-          </div>
+    <div>
+      <div class="testla_button_load">
+        <button @click="toggleGrid('api')">API CART</button>
+        <button @click="toggleGrid('admin')">ADMIN CART</button>
+      </div>
+
+        <div v-if="showGrid === 'api'" class="tesla_grid_card">
+            <div class="tesla_card" v-for="(info, index) in getDataApi" :key="info">
+              <div class="tesla_card_image">
+                <img :src='info.urlToImage' alt="url-image-article" height="200" width="400">
+              </div>
+              <div class="tesla_card_text">
+                <h1> {{ info.title }}</h1>
+                <span>Publié le {{ info.publishedAt }}</span>
+                <p>{{ info.description }}</p>
+                <router-link :to="{name : 'Article',  params: { id: index + 1 }}">Voir l'article</router-link>
+              </div>
+            </div>
         </div>
-    </div>
+
+
+        <div v-if="showGrid === 'admin'" class="tesla_grid_card">
+            <div class="tesla_card" v-for="(storage, index) in lsData" :key="storage">
+              <div class="tesla_card_image">
+                <img :src='storage.urlToImage' alt="url-image-article" height="200" width="400">
+              </div>
+              <div class="tesla_card_text">
+                <h1> {{ storage.title }}</h1>
+                <span>Publié le {{ storage.publishedAt }}</span>
+                <p>{{ storage.description }}</p>
+                <router-link :to="{name : 'Article',  params: { id: index + 1 }}">Voir l'article</router-link>
+              </div>
+            </div>
+        </div>
+      </div>
+
+
 </template>
 
 <script>
 export default {
   name: "BlogCard",
+  data() {
+    return {
+      showGrid: "api",
+      lsData: [],
+    }
+  },
   computed: {
     getDataApi() {
-      let test = this.$store.state.infosArticles;
+      let api = this.$store.state.infosArticles;
       console.log(this.$store.state.infosArticles);
-      return test;
+      return api;
     },
   },
-};
+  methods: {
+    toggleGrid(result) {
+      this.showGrid = result;
+      console.log(this.showGrid);
+    },
+    getLocalStorageData(){
+      let ls = JSON.parse(localStorage.getItem('session'))
+      this.lsData = ls;
+      console.log(ls)
+    }
+  },
+  mounted() {
+    this.getLocalStorageData();
+  }
+}
 </script>
 
 <style scoped>
+
+.testla_button_load {
+  position: relative;
+  top: 80px;
+  left: 10px;
+}
 .tesla_grid_card {
   position: relative;
   top: 70px;
@@ -72,6 +122,7 @@ export default {
   height: 65%;
   overflow: hidden;
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: space-between;
 }

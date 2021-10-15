@@ -41,9 +41,6 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-body {
-  margin: 0;
-}
 nav {
   position: fixed;
   width: 100%;
