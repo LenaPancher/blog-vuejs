@@ -2,7 +2,7 @@
 
   <section class="tesla_admin">
     <h1>SECTION ADMINISTRATION</h1>
-    <form @submit.prevent="addCard">
+    <form @submit.prevent="editArticle">
       <div class="tesla_clear">
         <label for="title">TITRE DE L'ARTICLE</label>
         <input name="title" type="text" v-model="newTitle">
@@ -26,47 +26,35 @@
 </template>
 
 <script>
-const LOCAL_KEY = "CartAdmin";
-
-export default {
-  name: "addCard",
-  data() {
-    return {
-      newTitle: "",
-      newAuthor: "",
-      newShortDesc: "",
-      urlImage: "",
-      content: "",
-    }
-  },
-  mounted() {
-
-  },
-  methods: {
-    addCard() {
-      // $store.commit : appeler une mutation
-      this.$store.commit("addAdminArticle", {
-        title: this.newTitle,
-        publishedAt: new Date().toLocaleDateString("fr-FR"),
-        author: this.newAuthor,
-        description: this.newShortDesc,
-        urlToImage: this.urlImage,
-        content: this.content
-      })
-
-      localStorage.clear()
-      let tablaeuAdmin = JSON.parse(localStorage.getItem(LOCAL_KEY))
-      if (tablaeuAdmin === null || tablaeuAdmin === undefined) {
-          tablaeuAdmin = [];
+  export default {
+    name: 'AdminEdit',
+    data: () => {
+      return {
+        id: Number,
+        datas: '',
+        newTitle: '',
+        newAuthor: '',
+        urlImage: '',
+        content: '',
+        newShortDesc: '',
       }
-      tablaeuAdmin.push({title: this.newTitle,publishedAt: new Date().toLocaleDateString("fr-FR"),author: this.newAuthor,description: this.newShortDesc,urlToImage: this.urlImage,content: this.content});
-      localStorage.setItem(LOCAL_KEY, JSON.stringify(tablaeuAdmin));
-      this.$router.push({ name: 'AdminDashboard'})
-
+    },
+    methods: {
+    },
+    mounted() {
+      const route = +this.$route.params.id
+      const getLocalData = JSON.parse(localStorage.getItem('CartAdmin'));
+      this.datas = getLocalData[route]
+      this.newTitle = this.datas.title
+      this.newAuthor = this.datas.author
+      this.urlImage = this.datas.urlImage
+      this.content = this.datas.content
+      this.newShortDesc = this.datas.description
+      localStorage.setItem('CartAdmin', JSON.stringify({title: this.newTitle,publishedAt: new Date().toLocaleDateString("fr-FR"),author: this.newAuthor,description: this.newShortDesc,urlToImage: this.urlImage,content: this.content}))
     }
   }
-}
 </script>
+
 
 <style scoped>
 .tesla_admin {
@@ -155,9 +143,5 @@ export default {
   border: none;
   cursor: pointer;
 }
-
-
-
-
 
 </style>

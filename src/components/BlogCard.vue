@@ -21,10 +21,29 @@ export default {
   computed: {
     getDataApi() {
       let test = this.$store.state.infosArticles;
-      console.log(this.$store.state.infosArticles);
+      console.log(test)
       return test;
     },
   },
+  methods: {
+    getNextArticles() {
+      window.onscroll = () => {
+        let windowHeight = document.documentElement.scrollTop + window.innerHeight,
+            offsetHeight = document.documentElement.offsetHeight;
+
+        if (windowHeight >= offsetHeight) {
+         this.$store.getters.getNewItems.forEach((index) => {
+
+            this.$store.state.infosArticles.push(index)
+            console.log(this.$store.state.infosArticles)
+          })
+        }
+      }
+    }
+  },
+  mounted() {
+    this.getNextArticles()
+  }
 };
 </script>
 
