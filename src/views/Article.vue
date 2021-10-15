@@ -40,8 +40,15 @@ export default {
     };
   },
   mounted() {
-    let data = this.$store.state.infosArticles[parseInt(this.$route.params.id) - 1];
-    console.log(data);
+    let store = this.$store.state.infosArticles;
+    let ls = JSON.parse(localStorage.getItem('session'));
+
+    ls.forEach(element => {
+        store.push(element)
+    });
+
+    let data = store.find(item => parseInt(item.id) === parseInt(this.$route.params.id));
+
     this.content = data.content;
     this.urlToImage = data.urlToImage;
     this.publishedAt = (data.publishedAt === null) ? this.empty = true : data.publishedAt;

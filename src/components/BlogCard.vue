@@ -5,34 +5,36 @@
       <button @click="toggleGrid('admin')">ARTICLE ADMIN</button>
     </div>
 
-    <div v-if="showGrid === 'api'" class="tesla_grid_card">
-      <div class="tesla_card" v-for="(info, index) in getDataApi" :key="info">
-        <div class="tesla_card_image">
-          <img :src='info.urlToImage' alt="url-image-article" height="200" width="400">
+        <div v-if="showGrid === 'api'" class="tesla_grid_card">
+            <div class="tesla_card" v-for="(info) in getDataApi" :key="info">
+              <div class="tesla_card_image">
+                <img :src='info.urlToImage' alt="url-image-article" height="200" width="400">
+              </div>
+              <div class="tesla_card_text">
+                <h1> {{ info.title }}</h1>
+                <span>Publié le {{ info.publishedAt }}</span>
+                <p>{{ info.description }}</p>
+                <router-link :to="{name : 'Article',  params: { id: info.id }}">Voir l'article</router-link>
+              </div>
+            </div>
         </div>
-        <div class="tesla_card_text">
-          <h1> {{ info.title }}</h1>
-          <span>Publié le {{ info.publishedAt }}</span>
-          <p>{{ info.description }}</p>
-          <router-link :to="{name : 'Article',  params: { id: index + 1 }}">Voir l'article</router-link>
-        </div>
-      </div>
-    </div>
 
-    <div v-if="showGrid === 'admin'" class="tesla_grid_card">
-      <div class="tesla_card" v-for="(storage, index) in lsData" :key="storage">
-        <div class="tesla_card_image">
-          <img :src='storage.urlToImage' alt="url-image-article" height="200" width="400">
-        </div>
-        <div class="tesla_card_text">
-          <h1> {{ storage.title }}</h1>
-          <span>Publié le {{ storage.publishedAt }}</span>
-          <p>{{ storage.description }}</p>
-          <router-link :to="{name : 'Article',  params: { id: index + 1 }}">Voir l'article</router-link>
+
+        <div v-if="showGrid === 'admin'" class="tesla_grid_card">
+            <div class="tesla_card" v-for="(storage) in lsData" :key="storage">
+              <div class="tesla_card_image">
+                <img :src='storage.urlToImage' alt="url-image-article" height="200" width="400">
+              </div>
+              <div class="tesla_card_text">
+                <h1> {{ storage.title }}</h1>
+                <span>Publié le {{ storage.publishedAt }}</span>
+                <p>{{ storage.description }}</p>
+                <router-link :to="{name : 'Article',  params: { id: storage.id }}">Voir l'article</router-link>
+              </div>
+            </div>
         </div>
       </div>
-    </div>
-  </div>
+
 </template>
 
 <script>

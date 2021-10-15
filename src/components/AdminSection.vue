@@ -39,6 +39,7 @@ export default {
   methods: {
     addCard() {
       let tableauAdmin = {
+        id: Math.floor(Math.random() * 1000000 + 1),
         title: this.newTitle,
         publishedAt: new Date().toLocaleDateString("fr-FR"),
         author: this.newAuthor,
@@ -51,18 +52,11 @@ export default {
       a = JSON.parse(localStorage.getItem("session")) || [];
       a.push(tableauAdmin);
       localStorage.setItem("session", JSON.stringify(a));
-      alert("element ajouté au local storage")  
+      alert("element ajouté au local storage");
     },
-    deleteItem() {
-
-    },
-    deleteAll() {
-
-    },
-    editItem() {
-      
-    }
-
+    deleteItem() {},
+    deleteAll() {},
+    editItem() {},
   },
 };
 </script>
