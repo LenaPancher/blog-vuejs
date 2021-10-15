@@ -37,7 +37,6 @@
 
 </template>
 
-
 <script>
 export default {
   name: "BlogCard",
@@ -161,11 +160,11 @@ export default {
 }
 
 .tesla_card_text h1 {
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bold;
-    height: 55px;
-    text-overflow: ellipsis;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  height: 55px;
+  overflow: hidden;
 }
 
 .tesla_card_text span {
