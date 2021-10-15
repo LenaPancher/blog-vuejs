@@ -4,19 +4,11 @@ import axios from 'axios'
 export default createStore({
     state: {
         infosArticles: [],
-        adminArticles: []
-
     },
     mutations: {
         updateInfosArticles(state, articles) {
             state.infosArticles.push(articles);
         },
-        addAdminArticle(state, article) {
-            state.adminArticles.unshift(article);
-        },
-        deleteAdmin(state, index) {
-            state.infosArticles.splice(index, 1);
-        }
     },
     actions: {
         getData(context) {
